@@ -30,7 +30,7 @@ Idk, man, I trust my first response (I cached it and no longer consider any new 
 
 ---------------------------------------> |
 Hey, Mario, can I login with             |
-husiev.pn:P@$$w0rd ?                     |
+husiev.pn:PASSWORD!SECRET ?                     |
                                          |
                                          |
   Idk, man, some issues, try again later |
@@ -38,7 +38,7 @@ husiev.pn:P@$$w0rd ?                     |
 
 
                                           --------------------------------------------------> real dekanat.ucu.edu.ua
-                                          Do you know husiev.pn:P@$$w0rd ? Can I log in, pls?
+                                          Do you know husiev.pn:PASSWORD!SECRET ? Can I log in, pls?
 ```
 
 As we can see, **even if the DNS is from the outside network** (e.g. Google's 8.8.8.8 or some other like 9.9.9.9, 1.1.1.1, 9.9.9.11, etc.), we **can still spoof** the DNS! That's because by default DNS is not transmitted over HTTPS, TLS or any other encrypted way. So the Ettercap can see DNS requests respond to them with spoofed stuff.
