@@ -1,0 +1,6 @@
+js/
+fonts/
+css/
+assets/
+cgi-bin/*
+!cgi-bin/classman.cgi?n=999.html

